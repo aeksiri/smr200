@@ -1649,7 +1649,7 @@
     <axis
       xyz="0 0 0" />
   </joint>
-     
+
   <gazebo>
     <plugin name="differential_drive_controller" filename="libgazebo_ros_diff_drive.so">
 
@@ -1690,17 +1690,94 @@
       <odometrySource>world</odometrySource>
 
       <!-- Set to true to publish transforms for the wheel links, defaults to false -->
-      <publishWheelTF>true</publishWheelTF>
+      <publishWheelTF>false</publishWheelTF>
 
       <!-- Set to true to publish transforms for the odometry, defaults to true -->
       <publishOdom>true</publishOdom>
 
       <!-- Set to true to publish sensor_msgs/JointState on /joint_states for the wheel joints, defaults to false -->
-      <publishWheelJointState>true</publishWheelJointState>
+      <publishWheelJointState>false</publishWheelJointState>
 
       <!-- Set to true to swap right and left wheels, defaults to true -->
       <legacyMode>false</legacyMode>
     </plugin>
   </gazebo>
-     
+
+  <!-- Front LiDAR RPLIDAR S2 -->
+  <gazebo reference="lidar_front_link">
+    <sensor type="ray" name="lidar_front_sensor">
+      <pose>0 0 0 0 0 0</pose>
+      <visualize>true</visualize>
+      <update_rate>40</update_rate>
+      <ray>
+        <scan>
+          <horizontal>
+            <samples>3000</samples>
+            <resolution>0.12</resolution>
+            <min_angle>-2.356195</min_angle>
+            <max_angle>2.356195</max_angle>
+          </horizontal>
+        </scan>
+        <range>
+          <min>0.05</min>
+          <max>30.0</max> <!-- white object -->
+          <!-- <max>10.0</max> --> <!-- black object -->
+          <resolution>0.05</resolution>
+        </range>
+        <noise>
+          <type>gaussian</type>
+          <!-- Noise parameters based on published spec for Hokuyo laser
+               achieving "+-30mm" accuracy at range < 10m.  A mean of 0.0m and
+               stddev of 0.01m will put 99.7% of samples within 0.03m of the true
+               reading. -->
+          <mean>0.0</mean>
+          <stddev>0.01</stddev>
+        </noise>
+      </ray>
+      <plugin name="gazebo_ros_lidar_front_controller" filename="libgazebo_ros_laser.so">
+        <topicName>/scan_front</topicName>
+        <frameName>lidar_front_link</frameName>
+      </plugin>
+    </sensor>
+  </gazebo>
+
+  <!-- Rear LiDAR RPLIDAR S2 -->
+  <gazebo reference="lidar_rear_link">
+    <sensor type="ray" name="lidar_rear_sensor">
+      <pose>0 0 0 0 0 0</pose>
+      <visualize>true</visualize>
+      <update_rate>40</update_rate>
+      <ray>
+        <scan>
+          <horizontal>
+            <samples>3000</samples>
+            <resolution>0.12</resolution>
+            <min_angle>-2.356195</min_angle>
+            <max_angle>2.356195</max_angle>
+          </horizontal>
+        </scan>
+        <range>
+          <min>0.05</min>
+          <max>30.0</max> <!-- white object -->
+          <!-- <max>10.0</max> --> <!-- black object -->
+          <resolution>0.05</resolution>
+        </range>
+        <noise>
+          <type>gaussian</type>
+          <!-- Noise parameters based on published spec for Hokuyo laser
+               achieving "+-30mm" accuracy at range < 10m.  A mean of 0.0m and
+               stddev of 0.01m will put 99.7% of samples within 0.03m of the true
+               reading. -->
+          <mean>0.0</mean>
+          <stddev>0.01</stddev>
+        </noise>
+      </ray>
+      <plugin name="gazebo_ros_lidar_rear_controller" filename="libgazebo_ros_laser.so">
+        <topicName>/scan_rear</topicName>
+        <frameName>lidar_rear_link</frameName>
+      </plugin>
+    </sensor>
+  </gazebo>
+
+
 </robot>
