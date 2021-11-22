@@ -372,7 +372,7 @@
     <child
       link="wheel_right_link" />
     <axis
-      xyz="0 0 1" />
+      xyz="0 0 -1" />
     <limit
       effort="100"
       velocity="50" />
