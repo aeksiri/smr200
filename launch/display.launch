@@ -5,6 +5,8 @@
     name="robot_description"
     textfile="$(find smr200)/urdf/smr200.urdf" />
 
+  <param name="/use_sim_time" value="true"/>
+
    <node
     name="joint_state_publisher"
     pkg="joint_state_publisher"
