@@ -1656,6 +1656,8 @@
       <!-- Plugin update rate in Hz -->
       <updateRate>40</updateRate>
 
+      <publishTf>true</publishTf>
+
       <!-- Name of left joint, defaults to `left_joint` -->
       <leftJoint>wheel_left_joint</leftJoint>
 
@@ -1672,7 +1674,7 @@
       <wheelAcceleration>1.0</wheelAcceleration>
 
       <!-- Maximum torque which the wheels can produce, in Nm, defaults to 5 Nm -->
-      <wheelTorque>50.0</wheelTorque>
+      <wheelTorque>100.0</wheelTorque>
 
       <!-- Topic to receive geometry_msgs/Twist message commands, defaults to `cmd_vel` -->
       <commandTopic>cmd_vel</commandTopic>
@@ -1682,6 +1684,10 @@
 
       <!-- Odometry frame, defaults to `odom` -->
       <odometryFrame>odom</odometryFrame>
+
+      <publishOdomTF>true</publishOdomTF>
+
+      <odometrySource>world</odometrySource>
 
       <!-- Robot frame to calculate odometry from, defaults to `base_footprint` -->
       <robotBaseFrame>base_footprint</robotBaseFrame>
@@ -1696,24 +1702,32 @@
       <publishOdom>true</publishOdom>
 
       <!-- Set to true to publish sensor_msgs/JointState on /joint_states for the wheel joints, defaults to false -->
-      <publishWheelJointState>false</publishWheelJointState>
+      <publishWheelJointState>true</publishWheelJointState>
 
       <!-- Set to true to swap right and left wheels, defaults to true -->
       <legacyMode>false</legacyMode>
     </plugin>
   </gazebo>
 
+  <link name="lidar_merged_link"/>
+
+  <joint name="base_link_to_lidar_merged_link" type="fixed">
+    <parent link="base_link"/>
+    <child link="lidar_merged_link"/>
+    <origin xyz="0.0 0.0 -0.14228" rpy="0 0 0"/>
+  </joint>
+
   <!-- Front LiDAR RPLIDAR S2 -->
   <gazebo reference="lidar_front_link">
-    <sensor type="ray" name="lidar_front_sensor">
+    <sensor type="gpu_ray" name="lidar_front_sensor">
       <pose>0 0 0 0 0 0</pose>
-      <visualize>true</visualize>
+      <visualize>false</visualize>
       <update_rate>40</update_rate>
       <ray>
         <scan>
           <horizontal>
             <samples>3000</samples>
-            <resolution>0.12</resolution>
+            <resolution>0.12</resolution> <!-- deg -->
             <min_angle>-2.356195</min_angle>
             <max_angle>2.356195</max_angle>
           </horizontal>
@@ -1734,8 +1748,8 @@
           <stddev>0.01</stddev>
         </noise>
       </ray>
-      <plugin name="gazebo_ros_lidar_front_controller" filename="libgazebo_ros_laser.so">
-        <topicName>/scan_front</topicName>
+      <plugin name="gazebo_ros_lidar_front_controller" filename="libgazebo_ros_gpu_laser.so">
+        <topicName>scan_front</topicName>
         <frameName>lidar_front_link</frameName>
       </plugin>
     </sensor>
@@ -1743,15 +1757,15 @@
 
   <!-- Rear LiDAR RPLIDAR S2 -->
   <gazebo reference="lidar_rear_link">
-    <sensor type="ray" name="lidar_rear_sensor">
+    <sensor type="gpu_ray" name="lidar_rear_sensor">
       <pose>0 0 0 0 0 0</pose>
-      <visualize>true</visualize>
+      <visualize>false</visualize>
       <update_rate>40</update_rate>
       <ray>
         <scan>
           <horizontal>
             <samples>3000</samples>
-            <resolution>0.12</resolution>
+            <resolution>0.12</resolution> <!-- deg -->
             <min_angle>-2.356195</min_angle>
             <max_angle>2.356195</max_angle>
           </horizontal>
@@ -1772,8 +1786,8 @@
           <stddev>0.01</stddev>
         </noise>
       </ray>
-      <plugin name="gazebo_ros_lidar_rear_controller" filename="libgazebo_ros_laser.so">
-        <topicName>/scan_rear</topicName>
+      <plugin name="gazebo_ros_lidar_rear_controller" filename="libgazebo_ros_gpu_laser.so">
+        <topicName>scan_rear</topicName>
         <frameName>lidar_rear_link</frameName>
       </plugin>
     </sensor>
@@ -1797,7 +1811,7 @@
     <sensor name="depthcam_front_left" type="depth">
       <update_rate>20</update_rate>
       <camera>
-        <horizontal_fov>1.047198</horizontal_fov>
+        <horizontal_fov>1.51843644924</horizontal_fov>
         <image>
           <width>640</width>
           <height>480</height>
@@ -1808,7 +1822,7 @@
           <far>3.5</far>
         </clip>
       </camera>
-      <plugin name="depthcam_front_controller" filename="libgazebo_ros_openni_kinect.so">
+      <plugin name="depthcam_front_left_controller" filename="libgazebo_ros_openni_kinect.so">
         <baseline>0.2</baseline>
         <alwaysOn>true</alwaysOn>
         <updateRate>1.0</updateRate>
@@ -1819,6 +1833,62 @@
         <depthImageInfoTopicName>depthcam_front_left/depth/camera_info</depthImageInfoTopicName>
         <pointCloudTopicName>depthcam_front_left/depth/points</pointCloudTopicName>
         <frameName>depthcam_front_left_view_link</frameName>
+        <pointCloudCutoff>0.5</pointCloudCutoff>
+        <pointCloudCutoffMax>3.0</pointCloudCutoffMax>
+        <distortionK1>0.00000001</distortionK1>
+        <distortionK2>0.00000001</distortionK2>
+        <distortionK3>0.00000001</distortionK3>
+        <distortionT1>0.00000001</distortionT1>
+        <distortionT2>0.00000001</distortionT2>
+        <CxPrime>0</CxPrime>
+        <Cx>0</Cx>
+        <Cy>0</Cy>
+        <focalLength>0</focalLength>
+        <hackBaseline>0</hackBaseline>
+      </plugin>
+    </sensor>
+  </gazebo>
+
+  <link name="depthcam_front_right_view_link">
+    <inertial>
+      <mass value="0.001"/>
+      <origin xyz="0 0 0"/>
+      <inertia ixx="0.000001" ixy="0.0" ixz="0.0" iyy="0.000001" iyz="0.0" izz="0.000001"/>
+    </inertial>
+  </link>
+
+  <joint name="depthcam_front_right_view_joint" type="fixed">
+    <parent link="depthcam_front_right_link"/>
+    <child link="depthcam_front_right_view_link"/>
+    <origin xyz="0.0 0.0 0.0" rpy="-1.5708 0.0 -1.5708"/>
+  </joint>
+
+  <gazebo reference="depthcam_front_right_link">
+    <sensor name="depthcam_front_right" type="depth">
+      <update_rate>20</update_rate>
+      <camera>
+        <horizontal_fov>1.51843644924</horizontal_fov>
+        <image>
+          <width>640</width>
+          <height>480</height>
+          <format>R8G8B8</format>
+        </image>
+        <clip>
+          <near>0.05</near>
+          <far>3.5</far>
+        </clip>
+      </camera>
+      <plugin name="depthcam_front_right_controller" filename="libgazebo_ros_openni_kinect.so">
+        <baseline>0.2</baseline>
+        <alwaysOn>true</alwaysOn>
+        <updateRate>1.0</updateRate>
+        <cameraName>depthcam_front_right</cameraName>
+        <imageTopicName>depthcam_front_right/color/image_raw</imageTopicName>
+        <cameraInfoTopicName>depthcam_front_right/color/camera_info</cameraInfoTopicName>
+        <depthImageTopicName>depthcam_front_right/depth/image_raw</depthImageTopicName>
+        <depthImageInfoTopicName>depthcam_front_right/depth/camera_info</depthImageInfoTopicName>
+        <pointCloudTopicName>depthcam_front_right/depth/points</pointCloudTopicName>
+        <frameName>depthcam_front_right_view_link</frameName>
         <pointCloudCutoff>0.5</pointCloudCutoff>
         <pointCloudCutoffMax>3.0</pointCloudCutoffMax>
         <distortionK1>0.00000001</distortionK1>
