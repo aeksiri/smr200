@@ -4,10 +4,14 @@
   <param
     name="robot_description"
     textfile="$(find smr200)/urdf/smr200.urdf" />
-  <node
-    name="joint_state_publisher_gui"
-    pkg="joint_state_publisher_gui"
-    type="joint_state_publisher_gui" />
+
+  <param name="/use_sim_time" value="true"/>
+
+   <node
+    name="joint_state_publisher"
+    pkg="joint_state_publisher"
+    type="joint_state_publisher" />
+
   <node
     name="robot_state_publisher"
     pkg="robot_state_publisher"
