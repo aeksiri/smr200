@@ -144,6 +144,33 @@
         <mesh
           filename="package://smr200/meshes/wheel_left_link.STL" />
       </geometry>
+
+      <surface>
+        <friction>
+          <ode>
+            <mu>10000000.01</mu>
+            <mu2>10000000.01</mu2>
+            <fdir1>0 0 1</fdir1>
+            <slip1>100</slip1>
+            <slip2>100</slip2>
+          </ode>
+        </friction>
+        <bounce>
+          <restitution_coefficient>0.0</restitution_coefficient>
+          <threshold>100000.0</threshold>
+        </bounce>
+        <contact>
+          <ode>
+            <soft_cfm>0.00001</soft_cfm>
+            <soft_erp>0.2</soft_erp>
+            <kp>100000000.0</kp>
+            <kd>10.0</kd>
+            <max_vel>100.0</max_vel>
+            <min_depth>0.001</min_depth>
+          </ode>
+        </contact>
+      </surface>
+
     </collision>
   </link>
   <joint
@@ -200,6 +227,16 @@
         <mesh
           filename="package://smr200/meshes/caster_front_left_link.STL" />
       </geometry>
+      <surface>
+        <friction>
+          <ode>
+            <mu>0.8</mu>
+            <mu2>0.8</mu2>
+            <kp>100000000.0</kp>
+            <kd>10.0</kd>
+          </ode>
+        </friction>
+      </surface>
     </collision>
   </link>
   <joint
@@ -253,6 +290,33 @@
         <mesh
           filename="package://smr200/meshes/caster_wheel_front_left_link.STL" />
       </geometry>
+      
+      <surface>
+        <friction>
+          <ode>
+            <mu>1.01</mu>
+            <mu2>1.01</mu2>
+            <fdir1>0 0 1</fdir1>
+            <slip1>0</slip1>
+            <slip2>0</slip2>
+          </ode>
+        </friction>
+        <bounce>
+          <restitution_coefficient>0.0</restitution_coefficient>
+          <threshold>100000.0</threshold>
+        </bounce>
+        <contact>
+          <ode>
+            <soft_cfm>0.00001</soft_cfm>
+            <soft_erp>0.2</soft_erp>
+            <kp>100000000.0</kp>
+            <kd>10.0</kd>
+            <max_vel>100.0</max_vel>
+            <min_depth>0.001</min_depth>
+          </ode>
+        </contact>
+      </surface>
+
     </collision>
   </link>
   <joint
@@ -359,10 +423,37 @@
         <mesh
           filename="package://smr200/meshes/wheel_right_link.STL" />
       </geometry>
+      
+      <surface>
+        <friction>
+          <ode>
+            <mu>10000000.01</mu>
+            <mu2>10000000.01</mu2>
+            <fdir1>0 0 1</fdir1>
+            <slip1>100</slip1>
+            <slip2>100</slip2>
+          </ode>
+        </friction>
+        <bounce>
+          <restitution_coefficient>0.0</restitution_coefficient>
+          <threshold>100000.0</threshold>
+        </bounce>
+        <contact>
+          <ode>
+            <soft_cfm>0.00001</soft_cfm>
+            <soft_erp>0.2</soft_erp>
+            <kp>100000000.0</kp>
+            <kd>10.0</kd>
+            <max_vel>100.0</max_vel>
+            <min_depth>0.001</min_depth>
+          </ode>
+        </contact>
+      </surface>
+
     </collision>
   </link>
   <joint
-    name="wheel_right_"
+    name="wheel_right_joint"
     type="continuous">
     <origin
       xyz="-0.1575 -0.054 0.037"
@@ -372,7 +463,7 @@
     <child
       link="wheel_right_link" />
     <axis
-      xyz="0 0 1" />
+      xyz="0 0 -1" />
     <limit
       effort="100"
       velocity="50" />
@@ -415,6 +506,33 @@
         <mesh
           filename="package://smr200/meshes/caster_front_right_link.STL" />
       </geometry>
+      
+      <surface>
+        <friction>
+          <ode>
+            <mu>1.01</mu>
+            <mu2>1.01</mu2>
+            <fdir1>0 0 1</fdir1>
+            <slip1>0</slip1>
+            <slip2>0</slip2>
+          </ode>
+        </friction>
+        <bounce>
+          <restitution_coefficient>0.0</restitution_coefficient>
+          <threshold>100000.0</threshold>
+        </bounce>
+        <contact>
+          <ode>
+            <soft_cfm>0.00001</soft_cfm>
+            <soft_erp>0.2</soft_erp>
+            <kp>100000000.0</kp>
+            <kd>10.0</kd>
+            <max_vel>100.0</max_vel>
+            <min_depth>0.001</min_depth>
+          </ode>
+        </contact>
+      </surface>
+
     </collision>
   </link>
   <joint
@@ -468,6 +586,33 @@
         <mesh
           filename="package://smr200/meshes/caster_wheel_front_right_link.STL" />
       </geometry>
+      
+      <surface>
+        <friction>
+          <ode>
+            <mu>1.01</mu>
+            <mu2>1.01</mu2>
+            <fdir1>0 0 1</fdir1>
+            <slip1>0</slip1>
+            <slip2>0</slip2>
+          </ode>
+        </friction>
+        <bounce>
+          <restitution_coefficient>0.0</restitution_coefficient>
+          <threshold>100000.0</threshold>
+        </bounce>
+        <contact>
+          <ode>
+            <soft_cfm>0.00001</soft_cfm>
+            <soft_erp>0.2</soft_erp>
+            <kp>100000000.0</kp>
+            <kd>10.0</kd>
+            <max_vel>100.0</max_vel>
+            <min_depth>0.001</min_depth>
+          </ode>
+        </contact>
+      </surface>
+
     </collision>
   </link>
   <joint
@@ -521,6 +666,16 @@
         <mesh
           filename="package://smr200/meshes/caster_rear_left_link.STL" />
       </geometry>
+      <surface>
+        <friction>
+          <ode>
+            <mu>0.8</mu>
+            <mu2>0.8</mu2>
+            <kp>100000000.0</kp>
+            <kd>10.0</kd>
+          </ode>
+        </friction>
+      </surface>
     </collision>
   </link>
   <joint
@@ -574,6 +729,33 @@
         <mesh
           filename="package://smr200/meshes/caster_wheel_rear_left_link.STL" />
       </geometry>
+      
+      <surface>
+        <friction>
+          <ode>
+            <mu>1.01</mu>
+            <mu2>1.01</mu2>
+            <fdir1>0 0 1</fdir1>
+            <slip1>0</slip1>
+            <slip2>0</slip2>
+          </ode>
+        </friction>
+        <bounce>
+          <restitution_coefficient>0.0</restitution_coefficient>
+          <threshold>100000.0</threshold>
+        </bounce>
+        <contact>
+          <ode>
+            <soft_cfm>0.00001</soft_cfm>
+            <soft_erp>0.2</soft_erp>
+            <kp>100000000.0</kp>
+            <kd>10.0</kd>
+            <max_vel>100.0</max_vel>
+            <min_depth>0.001</min_depth>
+          </ode>
+        </contact>
+      </surface>
+
     </collision>
   </link>
   <joint
@@ -627,6 +809,16 @@
         <mesh
           filename="package://smr200/meshes/caster_rear_right_link.STL" />
       </geometry>
+      <surface>
+        <friction>
+          <ode>
+            <mu>0.8</mu>
+            <mu2>0.8</mu2>
+            <kp>100000000.0</kp>
+            <kd>10.0</kd>
+          </ode>
+        </friction>
+      </surface>
     </collision>
   </link>
   <joint
@@ -680,6 +872,33 @@
         <mesh
           filename="package://smr200/meshes/caster_wheel_rear_right_link.STL" />
       </geometry>
+      
+      <surface>
+        <friction>
+          <ode>
+            <mu>1.01</mu>
+            <mu2>1.01</mu2>
+            <fdir1>0 0 1</fdir1>
+            <slip1>0</slip1>
+            <slip2>0</slip2>
+          </ode>
+        </friction>
+        <bounce>
+          <restitution_coefficient>0.0</restitution_coefficient>
+          <threshold>100000.0</threshold>
+        </bounce>
+        <contact>
+          <ode>
+            <soft_cfm>0.00001</soft_cfm>
+            <soft_erp>0.2</soft_erp>
+            <kp>100000000.0</kp>
+            <kd>10.0</kd>
+            <max_vel>100.0</max_vel>
+            <min_depth>0.001</min_depth>
+          </ode>
+        </contact>
+      </surface>
+
     </collision>
   </link>
   <joint
@@ -1649,4 +1868,369 @@
     <axis
       xyz="0 0 0" />
   </joint>
+
+  <!-- '''mu''' is the Coulomb friction coefficient for the first friction direction, and
+       '''mu2''' is the friction coefficient for the second friction direction (perpendicular to the first friction direction). -->
+
+  <!-- <gazebo reference="wheel_left_link">
+    <surface>
+        <friction>
+          <ode>
+            <mu>10000000.01</mu>
+            <mu2>10000000.01</mu2>
+            <fdir1>0 0 1</fdir1>
+            <slip1>100</slip1>
+            <slip2>100</slip2>
+          </ode>
+        </friction>
+        <bounce>
+          <restitution_coefficient>0.0</restitution_coefficient>
+          <threshold>100000.0</threshold>
+        </bounce>
+        <contact>
+          <ode>
+            <soft_cfm>0.00001</soft_cfm>
+            <soft_erp>0.2</soft_erp>
+            <kp>100000000.0</kp>
+            <kd>10.0</kd>
+            <max_vel>100.0</max_vel>
+            <min_depth>0.001</min_depth>
+          </ode>
+        </contact>
+    </surface>
+  </gazebo>
+
+  <gazebo reference="wheel_right_link">
+    <mu>0.8</mu>
+    <mu2>0.8</mu2>
+    <kp>100000000.0</kp>
+    <kd>10.0</kd>
+    <min_depth>0.03</min_depth>
+    <selfCollide>true</selfCollide>
+  </gazebo>
+
+  <gazebo reference="caster_wheel_front_left_link">
+    <mu>0.8</mu>
+    <mu2>0.8</mu2>
+    <kp>100000000.0</kp>
+    <kd>10.0</kd>
+    <min_depth>0.03</min_depth>
+    <selfCollide>true</selfCollide>
+  </gazebo>
+
+  <gazebo reference="caster_wheel_front_right_link">
+    <mu>0.8</mu>
+    <mu2>0.8</mu2>
+    <kp>100000000.0</kp>
+    <kd>10.0</kd>
+    <min_depth>0.03</min_depth>
+    <selfCollide>true</selfCollide>
+  </gazebo>
+
+  <gazebo reference="caster_wheel_rear_left_link">
+    <mu>0.8</mu>
+    <mu2>0.8</mu2>
+    <kp>100000000.0</kp>
+    <kd>10.0</kd>
+    <min_depth>0.03</min_depth>
+    <selfCollide>true</selfCollide>
+  </gazebo>
+
+  <gazebo reference="caster_wheel_rear_right_link">
+    <mu>0.8</mu>
+    <mu2>0.8</mu2>
+    <kp>100000000.0</kp>
+    <kd>10.0</kd>
+    <min_depth>0.03</min_depth>
+    <selfCollide>true</selfCollide>
+  </gazebo> -->
+
+  <!-- 
+  <gazebo reference="caster_front_left_link">
+    <mu>0.8</mu>
+    <mu2>0.8</mu2>
+    <kp>100000000.0</kp>
+    <kd>10.0</kd>
+    <selfCollide>true</selfCollide>
+  </gazebo>
+
+  <gazebo reference="caster_front_right_link">
+    <mu>0.8</mu>
+    <mu2>0.8</mu2>
+    <kp>100000000.0</kp>
+    <kd>10.0</kd>
+    <selfCollide>true</selfCollide>
+  </gazebo>
+
+  <gazebo reference="caster_rear_left_link">
+    <mu>0.8</mu>
+    <mu2>0.8</mu2>
+    <kp>100000000.0</kp>
+    <kd>10.0</kd>
+    <selfCollide>true</selfCollide>
+  </gazebo>
+
+  <gazebo reference="caster_rear_right_link">
+    <mu>0.8</mu>
+    <mu2>0.8</mu2>
+    <kp>100000000.0</kp>
+    <kd>10.0</kd>
+    <selfCollide>true</selfCollide>
+  </gazebo> -->
+
+  <gazebo>
+    <plugin name="differential_drive_controller" filename="libgazebo_ros_diff_drive.so">
+
+      <!-- Plugin update rate in Hz -->
+      <updateRate>40</updateRate>
+
+      <publishTf>true</publishTf>
+
+      <!-- Name of left joint, defaults to `left_joint` -->
+      <leftJoint>wheel_left_joint</leftJoint>
+
+      <!-- Name of right joint, defaults to `right_joint` -->
+      <rightJoint>wheel_right_joint</rightJoint>
+
+      <!-- The distance from the center of one wheel to the other, in meters, defaults to 0.34 m -->
+      <wheelSeparation>0.494</wheelSeparation>
+
+      <!-- Diameter of the wheels, in meters, defaults to 0.15 m -->
+      <wheelDiameter>0.15</wheelDiameter>
+
+      <!-- Wheel acceleration, in rad/s^2, defaults to 0.0 rad/s^2 -->
+      <wheelAcceleration>1.0</wheelAcceleration>
+
+      <!-- Maximum torque which the wheels can produce, in Nm, defaults to 5 Nm -->
+      <wheelTorque>500.0</wheelTorque>
+
+      <!-- Topic to receive geometry_msgs/Twist message commands, defaults to `cmd_vel` -->
+      <commandTopic>cmd_vel</commandTopic>
+
+      <!-- Topic to publish nav_msgs/Odometry messages, defaults to `odom` -->
+      <odometryTopic>odom</odometryTopic>
+
+      <!-- Odometry frame, defaults to `odom` -->
+      <odometryFrame>odom</odometryFrame>
+
+      <publishOdomTF>true</publishOdomTF>
+
+      <odometrySource>world</odometrySource>
+
+      <!-- Robot frame to calculate odometry from, defaults to `base_footprint` -->
+      <robotBaseFrame>base_footprint</robotBaseFrame>
+
+      <!-- Odometry source, 0 for ENCODER, 1 for WORLD, defaults to WORLD -->
+      <odometrySource>world</odometrySource>
+
+      <!-- Set to true to publish transforms for the wheel links, defaults to false -->
+      <publishWheelTF>false</publishWheelTF>
+
+      <!-- Set to true to publish transforms for the odometry, defaults to true -->
+      <publishOdom>true</publishOdom>
+
+      <!-- Set to true to publish sensor_msgs/JointState on /joint_states for the wheel joints, defaults to false -->
+      <publishWheelJointState>true</publishWheelJointState>
+
+      <!-- Set to true to swap right and left wheels, defaults to true -->
+      <legacyMode>false</legacyMode>
+    </plugin>
+  </gazebo>
+
+  <link name="lidar_merged_link"/>
+
+  <joint name="base_link_to_lidar_merged_link" type="fixed">
+    <parent link="base_link"/>
+    <child link="lidar_merged_link"/>
+    <origin xyz="0.0 0.0 -0.14228" rpy="0 0 0"/>
+  </joint>
+
+  <!-- Front LiDAR RPLIDAR S2 -->
+  <gazebo reference="lidar_front_link">
+    <sensor type="gpu_ray" name="lidar_front_sensor">
+      <pose>0 0 0 0 0 0</pose>
+      <visualize>false</visualize>
+      <update_rate>40</update_rate>
+      <ray>
+        <scan>
+          <horizontal>
+            <samples>3000</samples>
+            <resolution>0.12</resolution> <!-- deg -->
+            <min_angle>-2.356195</min_angle>
+            <max_angle>2.356195</max_angle>
+          </horizontal>
+        </scan>
+        <range>
+          <min>0.05</min>
+          <max>30.0</max> <!-- white object -->
+          <!-- <max>10.0</max> --> <!-- black object -->
+          <resolution>0.05</resolution>
+        </range>
+        <noise>
+          <type>gaussian</type>
+          <!-- Noise parameters based on published spec for Hokuyo laser
+               achieving "+-30mm" accuracy at range < 10m.  A mean of 0.0m and
+               stddev of 0.01m will put 99.7% of samples within 0.03m of the true
+               reading. -->
+          <mean>0.0</mean>
+          <stddev>0.01</stddev>
+        </noise>
+      </ray>
+      <plugin name="gazebo_ros_lidar_front_controller" filename="libgazebo_ros_gpu_laser.so">
+        <topicName>scan_front</topicName>
+        <frameName>lidar_front_link</frameName>
+      </plugin>
+    </sensor>
+  </gazebo>
+
+  <!-- Rear LiDAR RPLIDAR S2 -->
+  <gazebo reference="lidar_rear_link">
+    <sensor type="gpu_ray" name="lidar_rear_sensor">
+      <pose>0 0 0 0 0 0</pose>
+      <visualize>false</visualize>
+      <update_rate>40</update_rate>
+      <ray>
+        <scan>
+          <horizontal>
+            <samples>3000</samples>
+            <resolution>0.12</resolution> <!-- deg -->
+            <min_angle>-2.356195</min_angle>
+            <max_angle>2.356195</max_angle>
+          </horizontal>
+        </scan>
+        <range>
+          <min>0.05</min>
+          <max>30.0</max> <!-- white object -->
+          <!-- <max>10.0</max> --> <!-- black object -->
+          <resolution>0.05</resolution>
+        </range>
+        <noise>
+          <type>gaussian</type>
+          <!-- Noise parameters based on published spec for Hokuyo laser
+               achieving "+-30mm" accuracy at range < 10m.  A mean of 0.0m and
+               stddev of 0.01m will put 99.7% of samples within 0.03m of the true
+               reading. -->
+          <mean>0.0</mean>
+          <stddev>0.01</stddev>
+        </noise>
+      </ray>
+      <plugin name="gazebo_ros_lidar_rear_controller" filename="libgazebo_ros_gpu_laser.so">
+        <topicName>scan_rear</topicName>
+        <frameName>lidar_rear_link</frameName>
+      </plugin>
+    </sensor>
+  </gazebo>
+
+  <link name="depthcam_front_left_view_link">
+    <inertial>
+      <mass value="0.001"/>
+      <origin xyz="0 0 0"/>
+      <inertia ixx="0.000001" ixy="0.0" ixz="0.0" iyy="0.000001" iyz="0.0" izz="0.000001"/>
+    </inertial>
+  </link>
+
+  <joint name="depthcam_front_left_view_joint" type="fixed">
+    <parent link="depthcam_front_left_link"/>
+    <child link="depthcam_front_left_view_link"/>
+    <origin xyz="0.0 0.0 0.0" rpy="-1.5708 0.0 -1.5708"/>
+  </joint>
+
+  <gazebo reference="depthcam_front_left_link">
+    <sensor name="depthcam_front_left" type="depth">
+      <update_rate>20</update_rate>
+      <camera>
+        <horizontal_fov>1.51843644924</horizontal_fov>
+        <image>
+          <width>640</width>
+          <height>480</height>
+          <format>R8G8B8</format>
+        </image>
+        <clip>
+          <near>0.05</near>
+          <far>3.5</far>
+        </clip>
+      </camera>
+      <plugin name="depthcam_front_left_controller" filename="libgazebo_ros_openni_kinect.so">
+        <baseline>0.2</baseline>
+        <alwaysOn>true</alwaysOn>
+        <updateRate>1.0</updateRate>
+        <cameraName>depthcam_front_left</cameraName>
+        <imageTopicName>depthcam_front_left/color/image_raw</imageTopicName>
+        <cameraInfoTopicName>depthcam_front_left/color/camera_info</cameraInfoTopicName>
+        <depthImageTopicName>depthcam_front_left/depth/image_raw</depthImageTopicName>
+        <depthImageInfoTopicName>depthcam_front_left/depth/camera_info</depthImageInfoTopicName>
+        <pointCloudTopicName>depthcam_front_left/depth/points</pointCloudTopicName>
+        <frameName>depthcam_front_left_view_link</frameName>
+        <pointCloudCutoff>0.5</pointCloudCutoff>
+        <pointCloudCutoffMax>3.0</pointCloudCutoffMax>
+        <distortionK1>0.00000001</distortionK1>
+        <distortionK2>0.00000001</distortionK2>
+        <distortionK3>0.00000001</distortionK3>
+        <distortionT1>0.00000001</distortionT1>
+        <distortionT2>0.00000001</distortionT2>
+        <CxPrime>0</CxPrime>
+        <Cx>0</Cx>
+        <Cy>0</Cy>
+        <focalLength>0</focalLength>
+        <hackBaseline>0</hackBaseline>
+      </plugin>
+    </sensor>
+  </gazebo>
+
+  <link name="depthcam_front_right_view_link">
+    <inertial>
+      <mass value="0.001"/>
+      <origin xyz="0 0 0"/>
+      <inertia ixx="0.000001" ixy="0.0" ixz="0.0" iyy="0.000001" iyz="0.0" izz="0.000001"/>
+    </inertial>
+  </link>
+
+  <joint name="depthcam_front_right_view_joint" type="fixed">
+    <parent link="depthcam_front_right_link"/>
+    <child link="depthcam_front_right_view_link"/>
+    <origin xyz="0.0 0.0 0.0" rpy="-1.5708 0.0 -1.5708"/>
+  </joint>
+
+  <gazebo reference="depthcam_front_right_link">
+    <sensor name="depthcam_front_right" type="depth">
+      <update_rate>20</update_rate>
+      <camera>
+        <horizontal_fov>1.51843644924</horizontal_fov>
+        <image>
+          <width>640</width>
+          <height>480</height>
+          <format>R8G8B8</format>
+        </image>
+        <clip>
+          <near>0.05</near>
+          <far>3.5</far>
+        </clip>
+      </camera>
+      <plugin name="depthcam_front_right_controller" filename="libgazebo_ros_openni_kinect.so">
+        <baseline>0.2</baseline>
+        <alwaysOn>true</alwaysOn>
+        <updateRate>1.0</updateRate>
+        <cameraName>depthcam_front_right</cameraName>
+        <imageTopicName>depthcam_front_right/color/image_raw</imageTopicName>
+        <cameraInfoTopicName>depthcam_front_right/color/camera_info</cameraInfoTopicName>
+        <depthImageTopicName>depthcam_front_right/depth/image_raw</depthImageTopicName>
+        <depthImageInfoTopicName>depthcam_front_right/depth/camera_info</depthImageInfoTopicName>
+        <pointCloudTopicName>depthcam_front_right/depth/points</pointCloudTopicName>
+        <frameName>depthcam_front_right_view_link</frameName>
+        <pointCloudCutoff>0.5</pointCloudCutoff>
+        <pointCloudCutoffMax>3.0</pointCloudCutoffMax>
+        <distortionK1>0.00000001</distortionK1>
+        <distortionK2>0.00000001</distortionK2>
+        <distortionK3>0.00000001</distortionK3>
+        <distortionT1>0.00000001</distortionT1>
+        <distortionT2>0.00000001</distortionT2>
+        <CxPrime>0</CxPrime>
+        <Cx>0</Cx>
+        <Cy>0</Cy>
+        <focalLength>0</focalLength>
+        <hackBaseline>0</hackBaseline>
+      </plugin>
+    </sensor>
+  </gazebo>
+
 </robot>
